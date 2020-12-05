@@ -24,13 +24,17 @@ export class UploadComponent {
   }
 
   uploadFileToActivity() {
-    this.fileUploadService.postFile(this.fileToUpload).subscribe(
-      data => {
-        this.alertService.success("Success!!", this.options);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if (this.fileToUpload != null) {
+      this.fileUploadService.postFile(this.fileToUpload).subscribe(
+        data => {
+          this.alertService.success("Success!!", this.options);
+        },
+        error => {
+          this.alertService.error("Error !! [" + error + "]", this.options);
+        }
+      );
+    } else {
+      this.alertService.warn("Please select file first", this.options);
+    }
   }
 }

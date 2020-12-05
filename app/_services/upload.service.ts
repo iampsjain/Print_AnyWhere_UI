@@ -8,6 +8,7 @@ export class UploadService {
   constructor(private http: HttpClient) {}
 
   postFile(fileToUpload: File): any {
+    
     const endpoint = `${config.apiUrl}/api/private/file`;
     const formData: FormData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
